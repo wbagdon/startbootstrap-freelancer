@@ -12,7 +12,7 @@ var pkg = require('./package.json');
 var banner = ['/*!\n',
     ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
     ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
+    ' * Licensed under <%= pkg.license %>\n',
     ' */\n',
     ''
 ].join('');
@@ -32,7 +32,7 @@ gulp.task('less', function() {
 });
 
 // Minify CSS
-gulp.task('minify-css', function() {
+gulp.task('minify-css', ['less'], function() {
     return gulp.src('css/freelancer.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
